@@ -20,7 +20,13 @@ export interface Team {
   member: null;
 }
 
-const TeamManagement: React.FC<{ projectId: string }> = ({ projectId }) => {
+const TeamManagement: React.FC<{
+  /*{ projectId: string }*/
+}> = (
+  {
+    /*{ projectId }*/
+  }
+) => {
   const [teamName, setTeamName] = useState("");
   const [selectedUser, setSelectedUser] = useState("");
   const [selectedProject, setSelectedProject] = useState(projectId); // default project
