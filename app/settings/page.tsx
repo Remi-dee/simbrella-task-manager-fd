@@ -22,6 +22,7 @@ const Settings: React.FC = () => {
   const handleToggle = async () => {
     await updatePreferences({ notificationsEnabled: !notificationsEnabled });
     setNotificationsEnabled(!notificationsEnabled);
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     notificationsEnabled
       ? alert("Notification successfully disabled")
       : alert("Notification successfully enabled");

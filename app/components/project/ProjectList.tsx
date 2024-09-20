@@ -1,25 +1,17 @@
 import React, { useState } from "react";
 import {
   useFetchProjectsQuery,
-  useCreateProjectMutation,
-  useUpdateProjectMutation,
   useDeleteProjectMutation,
 } from "@/app/redux/features/project/project.api";
 import ProjectForm from "./ProjectForm";
 
 const ProjectList = () => {
   const { data: projects = [], refetch } = useFetchProjectsQuery({});
-  const [createProject] = useCreateProjectMutation();
-  const [updateProject] = useUpdateProjectMutation();
+
   const [deleteProject] = useDeleteProjectMutation();
 
   const [selectedProject, setSelectedProject] = useState(null);
   const [isFormOpen, setFormOpen] = useState(false);
-
-  const [projectInput, setProjectInput] = useState({
-    title: "",
-    description: "",
-  });
 
   const handleCreateNew = () => {
     setSelectedProject(null);
