@@ -1,27 +1,28 @@
+"use client"
+
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "@/app/redux/features/auth/authSlice"; // Assuming you have a logout function
 import { RootState } from "@/app/redux/store"; // Assuming you have a root state in redux
 import Link from "next/link";
+import { useGetAllUsersQuery } from "../redux/user/user.api";
 
 const Dashboard: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-
+  const { data: user = [] } = useGetAllUsersQuery({});
   // Get user info from redux store
-  const { user, isAuthenticated } = useSelector(
-    (state: RootState) => state.auth
-  );
+  const accessToken = useSelector((state: RootState) => state.auth.accessToken);
 
-  // Redirect to login page if user is not authenticated
+  // If the user is not authenticated, redirect to login
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/login"); // Redirect to login if user is not signed in
+    if (!accessToken) {
+      router.push("/login");
     }
-  }, [isAuthenticated, router]);
+  }, [accessToken, router]);
 
-  // Handle Logout
+
   const handleLogout = () => {
     dispatch(logout());
     router.push("/login");
