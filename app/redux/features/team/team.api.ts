@@ -16,10 +16,10 @@ export const teamApi = createApi({
   }),
   endpoints: (builder) => ({
     createTeam: builder.mutation({
-      query: (teamData) => ({
+      query: ({ name, projectId }) => ({
         url: "teams",
         method: "POST",
-        body: teamData,
+        body: { name, projectId },
       }),
     }),
     getTeamsByProject: builder.query({
@@ -35,6 +35,9 @@ export const teamApi = createApi({
         body: { userId },
       }),
     }),
+    getAllTeams: builder.query({
+      query: () => "/teams",
+    }),
   }),
 });
 
@@ -42,4 +45,5 @@ export const {
   useCreateTeamMutation,
   useGetTeamsByProjectQuery,
   useAddUserToTeamMutation,
+  useGetAllTeamsQuery,
 } = teamApi;
