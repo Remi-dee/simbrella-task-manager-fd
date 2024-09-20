@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import TeamComponent from "../components/team/TeamComp";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { RootState } from "../redux/store";
 
 const TeamsPage = () => {
   const router = useRouter();
