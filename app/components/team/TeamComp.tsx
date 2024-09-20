@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import {
   useAddUserToTeamMutation,
   useCreateTeamMutation,
@@ -16,7 +16,7 @@ export interface User {
 export interface Team {
   _id: string;
   name: string;
-  project: null;
+  project: Project;
   member: null;
 }
 
@@ -102,10 +102,9 @@ const TeamManagement: React.FC<{ projectId: string }> = ({ projectId }) => {
       <ul className="space-y-4">
         {teams.map((team: Team) => (
           <li key={team._id} className="bg-white p-4 rounded-lg shadow-md">
-           
             <div className="flex justify-between items-center">
               <span className="text-lg font-semibold text-gray-800">
-                {team.name} ({team.project?.name})
+                {team.name} ({team.project?.title})
               </span>
 
               {/* <div className="text-sm text-gray-600">
