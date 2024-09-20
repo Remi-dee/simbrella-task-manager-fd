@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
+
 import Register from "./components/authentication/RegForm";
 import { useEffect } from "react";
 
 import { useRouter } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 
 export default function Home() {
   const router = useRouter();

@@ -1,6 +1,6 @@
 "use client";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import TaskList from "../components/task/TaskList";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
