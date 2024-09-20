@@ -1,11 +1,10 @@
 "use client";
 
-
 import Register from "./components/authentication/RegForm";
 import { useEffect } from "react";
 
 import { useRouter } from "next/navigation";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 
 export default function Home() {
@@ -23,7 +22,7 @@ export default function Home() {
 
   return (
     <div className="">
-     {accessToken ? <Register /> : null}
+      <Register />
     </div>
   );
 }
