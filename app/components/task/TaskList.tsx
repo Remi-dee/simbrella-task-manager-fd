@@ -5,6 +5,11 @@ import {
   useUpdateTaskMutation,
 } from "@/app/redux/features/task/task.api";
 import React, { useState } from "react";
+export interface Task {
+  _id: string;
+  description: string;
+  title: string;
+}
 
 const TaskList = () => {
   const { data: tasks = [], refetch } = useFetchTasksQuery({});
@@ -39,11 +44,7 @@ const TaskList = () => {
     refetch();
   };
 
-  const handleEditClick = (task: {
-    _id: string;
-    title: string;
-    description: string;
-  }) => {
+  const handleEditClick = (task: Task) => {
     setEditingTask({
       id: task._id,
       title: task.title,
@@ -95,7 +96,7 @@ const TaskList = () => {
           </div>
         </div>
         <div className="task-list">
-          {tasks.map((task) => (
+          {tasks.map((task: Task) => (
             <div key={task._id} className="border p-4 mb-2 rounded-lg">
               <h2 className="text-xl font-bold">{task.title}</h2>
               <p>{task.description}</p>

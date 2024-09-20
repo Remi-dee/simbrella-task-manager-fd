@@ -5,13 +5,13 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { setAccessToken, setUser } from "../../redux/features/auth/authSlice";
 import { useRegisterUserMutation } from "../../redux/features/auth/authApi";
+import Link from "next/link";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [register, {  isLoading, error,  }] =
-    useRegisterUserMutation();
+  const [register, { isLoading, error }] = useRegisterUserMutation();
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -109,7 +109,17 @@ export default function Register() {
             <p className="mt-2 text-red-500 text-sm">{`unable to proceed ${error}`}</p>
           )}
         </form>
-      </div>
+
+        <p className="mt-6 text-center text-sm text-gray-600">
+          Already have an account?{" "}
+          <Link
+           href="/login"
+            className="text-blue-500 font-semibold hover:underline"
+          >
+            Logi
+          </Link>
+        </p>
+      </div>n
     </div>
   );
 }

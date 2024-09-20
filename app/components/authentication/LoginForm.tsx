@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { setAccessToken, setUser } from "../../redux/features/auth/authSlice";
 import { useLoginUserMutation } from "../../redux/features/auth/authApi";
+import Link from "next/link";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -86,6 +87,15 @@ export default function Login() {
             <p className="mt-2 text-red-500 text-sm">{`Unable to login: ${error}`}</p>
           )}
         </form>
+        <p className="mt-6 text-center text-sm text-gray-600">
+          Don&apos;t have an account?{" "}
+          <Link
+            href="/register"
+            className="text-blue-500 font-semibold hover:underline"
+          >
+            Register
+          </Link>
+        </p>
       </div>
     </div>
   );

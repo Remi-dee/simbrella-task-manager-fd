@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import {
   useAddUserToTeamMutation,
   useCreateTeamMutation,
@@ -8,6 +8,17 @@ import {
 import { useGetAllUsersQuery } from "@/app/redux/user/user.api";
 import { useGetAllProjectsQuery } from "@/app/redux/features/project/project.api";
 import { Project } from "../project/ProjectForm";
+export interface User {
+  _id: string;
+  user_name: string;
+}
+
+export interface Team {
+  _id: string;
+  name: string;
+  project: null;
+  member: null;
+}
 
 const TeamManagement: React.FC<{ projectId: string }> = ({ projectId }) => {
   const [teamName, setTeamName] = useState("");
@@ -89,22 +100,22 @@ const TeamManagement: React.FC<{ projectId: string }> = ({ projectId }) => {
       </h3>
 
       <ul className="space-y-4">
-        {teams.map((team) => (
+        {teams.map((team: Team) => (
           <li key={team._id} className="bg-white p-4 rounded-lg shadow-md">
-            {(console.log("this is teams"), team)}
+           
             <div className="flex justify-between items-center">
               <span className="text-lg font-semibold text-gray-800">
                 {team.name} ({team.project?.name})
               </span>
 
-              <div className="text-sm text-gray-600">
+              {/* <div className="text-sm text-gray-600">
                 Members:
                 <ul>
                   {team.members.map((member) => (
                     <li key={member._id}>{member.username}</li>
                   ))}
                 </ul>
-              </div>
+              </div> */}
 
               <div className="flex items-center space-x-2">
                 <select
@@ -113,9 +124,9 @@ const TeamManagement: React.FC<{ projectId: string }> = ({ projectId }) => {
                   className="border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 >
                   <option value="">Select User</option>
-                  {users.map((user) => (
+                  {users.map((user: User) => (
                     <option key={user._id} value={user._id}>
-                      {user.username}
+                      {user.user_name}
                     </option>
                   ))}
                 </select>
