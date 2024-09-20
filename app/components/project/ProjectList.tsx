@@ -26,21 +26,6 @@ const ProjectList = () => {
     setFormOpen(true);
   };
 
-  const handleCreateProject = async () => {
-    handleCreateNew();
-    await createProject(projectInput);
-    setProjectInput({ title: "", description: "" });
-    refetch();
-  };
-
-  const handleUpdateProject = async (
-    id: string,
-    updatedData: { title: string; description: string }
-  ) => {
-    await updateProject({ id, ...updatedData });
-    refetch();
-  };
-
   const handleDeleteProject = async (id: string) => {
     await deleteProject(id);
     refetch();
@@ -57,7 +42,7 @@ const ProjectList = () => {
         <h1 className="text-3xl font-semibold mb-4">Project Management</h1>
         <div className="mb-4">
           <button
-            className="bg-blue-500 text-white p-2 rounded"
+            className="bg-blue-500 text-white  p-2 rounded"
             onClick={handleCreateNew}
           >
             Create New Project

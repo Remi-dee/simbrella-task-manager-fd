@@ -10,7 +10,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [register, { data: registerData, isLoading, error, isSuccess }] =
+  const [register, {  isLoading, error,  }] =
     useRegisterUserMutation();
   const dispatch = useDispatch();
   const router = useRouter();

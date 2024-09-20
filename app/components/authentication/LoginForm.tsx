@@ -9,7 +9,7 @@ import { useLoginUserMutation } from "../../redux/features/auth/authApi";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [login, { data: loginData, isLoading, error }] = useLoginUserMutation();
+  const [login, { isLoading, error }] = useLoginUserMutation();
   const dispatch = useDispatch();
   const router = useRouter();
 

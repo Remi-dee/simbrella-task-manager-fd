@@ -17,8 +17,9 @@ const TeamManagement: React.FC<{ projectId: string }> = ({ projectId }) => {
   const { data: users = [] } = useGetAllUsersQuery({});
   const { data: projects = [] } = useGetAllProjectsQuery({});
   const { data: teams = [] } = showAllTeams
-    ? useGetAllTeamsQuery()
-    : useGetTeamsByProjectQuery(selectedProject); // Toggle query based on the state
+    ? useGetAllTeamsQuery({})
+    : // eslint-disable-next-line react-hooks/rules-of-hooks
+      useGetTeamsByProjectQuery(selectedProject); // Toggle query based on the state
 
   const [createTeam] = useCreateTeamMutation();
   const [addUserToTeam] = useAddUserToTeamMutation();

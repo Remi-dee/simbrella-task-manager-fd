@@ -28,6 +28,7 @@ export const authApi = createApi({
           dispatch(setError(null));
         } catch (error: unknown) {
           dispatch(setError("Registration failed"));
+          console.log(error);
         } finally {
           dispatch(setLoading(false));
         }
@@ -48,6 +49,7 @@ export const authApi = createApi({
           dispatch(setError(null));
         } catch (error: unknown) {
           dispatch(setError("Login failed"));
+          console.log(error);
         } finally {
           dispatch(setLoading(false));
         }
@@ -64,6 +66,7 @@ export const authApi = createApi({
           dispatch(logout());
         } catch (error: unknown) {
           dispatch(setError("Logout failed"));
+          console.log(error);
         }
       },
     }),
