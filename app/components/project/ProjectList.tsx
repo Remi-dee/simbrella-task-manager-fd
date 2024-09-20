@@ -3,14 +3,15 @@ import {
   useFetchProjectsQuery,
   useDeleteProjectMutation,
 } from "@/app/redux/features/project/project.api";
-import ProjectForm from "./ProjectForm";
+import ProjectForm, { Project } from "./ProjectForm";
 
 const ProjectList = () => {
   const { data: projects = [], refetch } = useFetchProjectsQuery({});
 
   const [deleteProject] = useDeleteProjectMutation();
 
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
   const [isFormOpen, setFormOpen] = useState(false);
 
   const handleCreateNew = () => {
@@ -23,7 +24,7 @@ const ProjectList = () => {
     refetch();
   };
 
-  const openUpdateForm = (project) => {
+  const openUpdateForm = (project: Project) => {
     setSelectedProject(project);
     setFormOpen(true);
   };
@@ -41,7 +42,7 @@ const ProjectList = () => {
           </button>
         </div>
         <div className="project-list">
-          {projects.map((project) => (
+          {projects.map((project: Project) => (
             <div key={project._id} className="border p-4 mb-2 rounded-lg">
               <h2 className="text-xl font-bold mb-1">{project.title}</h2>
               <p className="mb-1">{project.description}</p>

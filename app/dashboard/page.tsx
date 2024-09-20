@@ -28,49 +28,51 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-black font-family-[var(--font-geist-sans)]">
-      <div className="max-w-4xl w-full mx-auto px-6 py-12 bg-white shadow-lg rounded-lg text-center">
-        <h1 className="text-4xl font-bold text-gray-800 mb-6">
-          Welcome, {userProfile?.user_name}!
-        </h1>
-        <p className="text-lg text-gray-600 mb-8">
-          Welcome to{" "}
-          <span className="text-indigo-600 font-semibold">
-            Simbrella Task Manager
-          </span>
-          . Here, you can manage your projects, tasks, and teams efficiently!
-        </p>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-black  font-family-[var(--font-geist-sans)]">
+      {accessToken ? (
+        <div className="max-w-4xl w-full mx-auto px-6 py-12 bg-white shadow-lg rounded-lg text-center">
+          <h1 className="text-4xl font-bold text-gray-800 mb-6">
+            Welcome, {userProfile?.user_name}!
+          </h1>
+          <p className="text-lg text-gray-600 mb-8">
+            Welcome to{" "}
+            <span className="text-indigo-600 font-semibold">
+              Simbrella Task Manager
+            </span>
+            . Here, you can manage your projects, tasks, and teams efficiently!
+          </p>
 
-        <div className="space-y-6">
-          <Link
-            className="block bg-indigo-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-indigo-400 transition duration-300"
-            href="/projects "
-          >
-            Create and Manage Projects
-          </Link>
+          <div className="space-y-6">
+            <Link
+              className="block bg-indigo-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-indigo-400 transition duration-300"
+              href="/project "
+            >
+              Create and Manage Projects
+            </Link>
 
-          <Link
-            className="block bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-green-400 transition duration-300"
-            href="/tasks"
-          >
-            Create and Manage Tasks
-          </Link>
+            <Link
+              className="block bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-green-400 transition duration-300"
+              href="/task"
+            >
+              Create and Manage Tasks
+            </Link>
 
-          <Link
-            className="block bg-yellow-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-yellow-400 transition duration-300"
-            href="/teams"
+            <Link
+              className="block bg-yellow-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-yellow-400 transition duration-300"
+              href="/team"
+            >
+              Create Teams and Assign Users
+            </Link>
+          </div>
+
+          <button
+            onClick={handleLogout}
+            className="mt-8 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-red-400 transition duration-300"
           >
-            Create Teams and Assign Users
-          </Link>
+            Logout
+          </button>
         </div>
-
-        <button
-          onClick={handleLogout}
-          className="mt-8 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-red-400 transition duration-300"
-        >
-          Logout
-        </button>
-      </div>
+      ) : null}{" "}
     </div>
   );
 };

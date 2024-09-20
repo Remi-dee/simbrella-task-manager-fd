@@ -4,8 +4,13 @@ import {
   useUpdateProjectMutation,
 } from "@/app/redux/features/project/project.api";
 
+export interface Project {
+  title: string;
+  description: string;
+  _id: string;
+}
 interface ProjectFormProps {
-  project?: unknown;
+  project?: Project | null;
   refetch: () => void; // Make sure this is a function
   onClose: () => void;
 }

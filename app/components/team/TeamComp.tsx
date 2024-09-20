@@ -7,6 +7,7 @@ import {
 } from "@/app/redux/features/team/team.api";
 import { useGetAllUsersQuery } from "@/app/redux/user/user.api";
 import { useGetAllProjectsQuery } from "@/app/redux/features/project/project.api";
+import { Project } from "../project/ProjectForm";
 
 const TeamManagement: React.FC<{ projectId: string }> = ({ projectId }) => {
   const [teamName, setTeamName] = useState("");
@@ -17,8 +18,8 @@ const TeamManagement: React.FC<{ projectId: string }> = ({ projectId }) => {
   const { data: users = [] } = useGetAllUsersQuery({});
   const { data: projects = [] } = useGetAllProjectsQuery({});
   const { data: teams = [] } = showAllTeams
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    ? useGetAllTeamsQuery({})
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useGetAllTeamsQuery({})
     : // eslint-disable-next-line react-hooks/rules-of-hooks
       useGetTeamsByProjectQuery(selectedProject); // Toggle query based on the state
 
@@ -60,7 +61,7 @@ const TeamManagement: React.FC<{ projectId: string }> = ({ projectId }) => {
           className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-4"
         >
           <option value="">Select Project</option>
-          {projects.map((project) => (
+          {projects.map((project: Project) => (
             <option key={project._id} value={project._id}>
               {project.title}
             </option>

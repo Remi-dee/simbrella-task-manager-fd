@@ -5,6 +5,9 @@ import {
   useUpdatePreferencesMutation,
   useGetUserPreferencesQuery,
 } from "@/app/redux/user/user.api";
+import { useRouter } from "next/navigation";
+import { RootState } from "../redux/store";
+import { useSelector } from "react-redux";
 
 const Settings: React.FC = () => {
   const { data: preferences } = useGetUserPreferencesQuery({});
@@ -12,6 +15,15 @@ const Settings: React.FC = () => {
     preferences?.notificationsEnabled || true
   );
   const [updatePreferences] = useUpdatePreferencesMutation();
+  const router = useRouter();
+  // Get user info from redux store
+  const accessToken = useSelector((state: RootState) => state.auth.accessToken);
+
+  useEffect(() => {
+    if (!accessToken) {
+      router.push("/login");
+    }
+  }, [accessToken, router]);
 
   useEffect(() => {
     if (preferences) {
