@@ -83,9 +83,7 @@ export default function Login() {
             {isLoading ? "Logging in..." : "Login"}
           </button>
           {error && (
-            <p className="mt-2 text-red-500 text-sm">{`Unable to login: ${
-              error?.data?.message || error
-            }`}</p>
+            <p className="mt-2 text-red-500 text-sm">{`Unable to login: ${error}`}</p>
           )}
         </form>
       </div>

@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
 import React, { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "@/app/redux/features/auth/authSlice"; // Assuming you have a logout function
 import { RootState } from "@/app/redux/store"; // Assuming you have a root state in redux
 import Link from "next/link";
-import { useGetAllUsersQuery } from "../redux/user/user.api";
+import { useGetUserProfileQuery } from "../redux/user/user.api";
 
 const Dashboard: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { data: user = [] } = useGetAllUsersQuery({});
+  const { data: userProfile } = useGetUserProfileQuery({});
   // Get user info from redux store
   const accessToken = useSelector((state: RootState) => state.auth.accessToken);
 
@@ -22,7 +22,6 @@ const Dashboard: React.FC = () => {
     }
   }, [accessToken, router]);
 
-
   const handleLogout = () => {
     dispatch(logout());
     router.push("/login");
@@ -32,7 +31,7 @@ const Dashboard: React.FC = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-black font-family-[var(--font-geist-sans)]">
       <div className="max-w-4xl w-full mx-auto px-6 py-12 bg-white shadow-lg rounded-lg text-center">
         <h1 className="text-4xl font-bold text-gray-800 mb-6">
-          Welcome, {user?.name}!
+          Welcome, {userProfile?.user_name}!
         </h1>
         <p className="text-lg text-gray-600 mb-8">
           Welcome to{" "}
@@ -43,22 +42,25 @@ const Dashboard: React.FC = () => {
         </p>
 
         <div className="space-y-6">
-          <Link href="/projects">
-            <a className="block bg-indigo-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-indigo-400 transition duration-300">
-              Create and Manage Projects
-            </a>
+          <Link
+            className="block bg-indigo-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-indigo-400 transition duration-300"
+            href="/projects "
+          >
+            Create and Manage Projects
           </Link>
 
-          <Link href="/tasks">
-            <a className="block bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-green-400 transition duration-300">
-              Create and Manage Tasks
-            </a>
+          <Link
+            className="block bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-green-400 transition duration-300"
+            href="/tasks"
+          >
+            Create and Manage Tasks
           </Link>
 
-          <Link href="/teams">
-            <a className="block bg-yellow-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-yellow-400 transition duration-300">
-              Create Teams and Assign Users
-            </a>
+          <Link
+            className="block bg-yellow-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-yellow-400 transition duration-300"
+            href="/teams"
+          >
+            Create Teams and Assign Users
           </Link>
         </div>
 

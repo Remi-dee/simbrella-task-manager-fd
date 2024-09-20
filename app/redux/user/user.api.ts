@@ -27,11 +27,15 @@ export const userApi = createApi({
         body: preferences,
       }),
     }),
+    getUserProfile: builder.query({
+      query: () => "users/profile",
+    }),
   }),
 });
 
 export const {
   useGetAllUsersQuery,
+  useGetUserProfileQuery,
   useGetUserPreferencesQuery,
   useUpdatePreferencesMutation,
 } = userApi;
