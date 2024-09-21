@@ -46,7 +46,7 @@ This is a full-stack task management application that supports user authenticati
    npm install or yarn install
    ```
 
-   3. Connect to the backend by adding env details:
+4. Connect to the backend by adding env details:
 
    ```bash
    locate the .envExample file in the root folder and change rename to .env
