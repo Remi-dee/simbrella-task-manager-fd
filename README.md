@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Task Management Application
 
-## Getting Started
+This is a full-stack task management application that supports user authentication, project management, task management, and team collaboration. It is built with **NestJS** for the backend and **Next.js** for the frontend, using **MongoDB** as the database. The project also integrates **Swagger** for API documentation and supports real-time updates via WebSockets.
 
-First, run the development server:
+## Demo
+### Authentication (Login - Logout)
+![simbrella team auth](https://github.com/user-attachments/assets/37cd717e-fd32-497c-bce2-accf79c8731a)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Authentication (Register)
+![simbrella 1](https://github.com/user-attachments/assets/bdca9917-ab21-4dfe-a542-21b32a69295c)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Manage task
+![simbrella task](https://github.com/user-attachments/assets/eac69db7-36b8-4b3d-ad52-4b61e9702c99)
 
-## Learn More
+### Manage project
+![simbrella project 2](https://github.com/user-attachments/assets/47f879b6-57ec-44fd-b0f3-5ff856ba013d)
 
-To learn more about Next.js, take a look at the following resources:
+### Manage team
+![simbrella team](https://github.com/user-attachments/assets/381ed10e-a371-41c0-87c5-b6f12c6bdd58)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Settings
+![simbrella team settings](https://github.com/user-attachments/assets/30ee2a57-2d89-4da9-880a-f5e450ba6215)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Features
+
+- User authentication (JWT-based)
+- Project and task management
+- Team management (assign users to teams and projects)
+- Real-time task updates using WebSockets
+- Email notifications using Nodemailer
+- API documentation via Swagger
+
+## Technologies Used
+
+- **Backend**: NestJS, MongoDB, Mongoose, JWT, Swagger, Nodemailer
+- **Frontend**: Next.js, Redux Toolkit, TailwindCSS
+- **Database**: MongoDB
+- **Real-time**: WebSockets
+
+## Prerequisites
+
+- Node.js (v14+)
+- MongoDB (Ensure MongoDB is running on your machine or use a MongoDB cloud instance)
+- npm (or yarn)
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-repo-url.git
+
+2.  Navigate to the Frontend Directory
+
+   ```bash
+   Once the repository is cloned, navigate to the frontend folder where the Next.js application is located:
+   Copy code
+   cd task-management-app/frontend
+ ```
+
+
+3. Install the repository:
+
+   ```bash
+   npm install or yarn install
+   ```
+
+4. Connect to the backend by adding env details:
+
+   ```bash
+   locate the .envExample file in the root folder and change rename to .env
+
