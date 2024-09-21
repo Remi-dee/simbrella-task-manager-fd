@@ -31,7 +31,7 @@ const ProjectList = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-lg p-8 bg-white rounded-lg shadow-md">
+      <div className="w-full max-w-lg p-8 text-gray-700 bg-white rounded-lg shadow-md">
         <h1 className="text-3xl font-semibold mb-4">Project Management</h1>
         <div className="mb-4">
           <button

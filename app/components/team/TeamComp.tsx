@@ -52,7 +52,7 @@ const TeamManagement: React.FC<{ projectId: string }> = ({ projectId }) => {
   };
 
   return (
-    <div className="text-center flex flex-col pt-[70px] items-center min-h-screen text-black bg-gray-100 font-[family-name:var(--font-geist-sans)]">
+    <div className="text-center flex flex-col pt-[70px] items-center min-h-screen text-gray-800 bg-gray-100 font-[family-name:var(--font-geist-sans)]">
       <h2 className="text-3xl font-semibold mb-6 text-gray-800">
         Team Management
       </h2>
