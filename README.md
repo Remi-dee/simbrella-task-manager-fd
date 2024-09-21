@@ -20,6 +20,10 @@ This is a full-stack task management application that supports user authenticati
 ### Manage team
 ![simbrella team](https://github.com/user-attachments/assets/381ed10e-a371-41c0-87c5-b6f12c6bdd58)
 
+### Settings
+![simbrella team settings](https://github.com/user-attachments/assets/30ee2a57-2d89-4da9-880a-f5e450ba6215)
+
+
 
 
 ## Features
