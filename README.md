@@ -3,7 +3,7 @@
 This is a full-stack task management application that supports user authentication, project management, task management, and team collaboration. It is built with **NestJS** for the backend and **Next.js** for the frontend, using **MongoDB** as the database. The project also integrates **Swagger** for API documentation and supports real-time updates via WebSockets.
 
 ## Demo
-### Authentication (Login)
+### Authentication (Login - Logout)
 ![simbrella team auth](https://github.com/user-attachments/assets/37cd717e-fd32-497c-bce2-accf79c8731a)
 
 ### Authentication (Register)
