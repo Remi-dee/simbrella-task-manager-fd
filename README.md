@@ -30,3 +30,24 @@ This is a full-stack task management application that supports user authenticati
 
    ```bash
    git clone https://github.com/your-repo-url.git
+
+2.  Navigate to the Frontend Directory
+
+   ```bash
+   Once the repository is cloned, navigate to the frontend folder where the Next.js application is located:
+   Copy code
+   cd task-management-app/frontend
+ ```
+
+
+3. Install the repository:
+
+   ```bash
+   npm install or yarn install
+   ```
+
+   3. Connect to the backend by adding env details:
+
+   ```bash
+   locate the .envExample file in the root folder and change rename to .env
+
