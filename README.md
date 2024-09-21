@@ -1,7 +1,7 @@
 # Task Management Application
 
 This is a full-stack task management application that supports user authentication, project management, task management, and team collaboration. It is built with **NestJS** for the backend and **Next.js** for the frontend, using **MongoDB** as the database. The project also integrates **Swagger** for API documentation and supports real-time updates via WebSockets.
-[Visit app here](simbrella-task-manager-fd.vercel.app)
+[Visit app here](https://simbrella-task-manager-fd.vercel.app)
 
 
 ## Demo
