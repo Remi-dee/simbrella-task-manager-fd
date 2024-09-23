@@ -17,11 +17,7 @@ const TeamsPage = () => {
       router.push("/login");
     }
   }, [accessToken, router]);
-  return (
-    <div className="p-4">
-      {accessToken ? <TeamComponent projectId="" /> : null}
-    </div>
-  );
+  return <div className="p-4">{accessToken ? <TeamComponent /> : null}</div>;
 };
 
 export default TeamsPage;
