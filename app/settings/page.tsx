@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import {
   useUpdatePreferencesMutation,
   useGetUserPreferencesQuery,
-} from "@/app/redux/user/user.api";
+} from "@/app/redux/features/user/user.api";
 import { useRouter } from "next/navigation";
 import { RootState } from "../redux/store";
 import { useSelector } from "react-redux";

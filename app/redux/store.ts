@@ -9,7 +9,7 @@ import { taskApi } from "./features/task/task.api";
 import { projectApi } from "./features/project/project.api";
 import { projectReducer } from "./features/project/project.slice";
 import { teamApi } from "./features/team/team.api";
-import { userApi } from "./user/user.api";
+import { userApi } from "./features/user/user.api";
 
 export const store = configureStore({
   reducer: {

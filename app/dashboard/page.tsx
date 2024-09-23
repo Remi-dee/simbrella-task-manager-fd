@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "@/app/redux/features/auth/authSlice"; // Assuming you have a logout function
 import { RootState } from "@/app/redux/store"; // Assuming you have a root state in redux
 import Link from "next/link";
-import { useGetUserProfileQuery } from "../redux/user/user.api";
+import { useGetUserProfileQuery } from "../redux/features/user/user.api";
 
 const Dashboard: React.FC = () => {
   const router = useRouter();

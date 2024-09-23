@@ -5,42 +5,61 @@ import {
   useGetTeamsByProjectQuery,
   useGetAllTeamsQuery, // New hook for fetching all teams
 } from "@/app/redux/features/team/team.api";
-import { useGetAllUsersQuery } from "@/app/redux/user/user.api";
+import { useGetAllUsersQuery } from "@/app/redux/features/user/user.api";
 import { useGetAllProjectsQuery } from "@/app/redux/features/project/project.api";
 import { Project } from "../project/ProjectForm";
+
 export interface User {
   _id: string;
   user_name: string;
+}
+
+export interface selectedProject {
+  title: string;
+  _id: string;
+  description: string;
 }
 
 export interface Team {
   _id: string;
   name: string;
   project: Project;
-  member: null;
+  members: []; // Changed to an array of users
 }
 
-const TeamManagement: React.FC<{ projectId: string }> = ({ projectId }) => {
+const TeamManagement: React.FC = () => {
   const [teamName, setTeamName] = useState("");
   const [selectedUser, setSelectedUser] = useState("");
-  const [selectedProject, setSelectedProject] = useState(projectId); // default project
-  const [showAllTeams, setShowAllTeams] = useState(false); // New state to toggle between all teams and project-specific teams
+  const [selectedProject, setSelectedProject] =
+    useState<selectedProject | null>(null);
+  const [showAllTeams, setShowAllTeams] = useState(false); // Toggle between all teams and project-specific teams
 
+  // Fetch users, projects, teams
   const { data: users = [] } = useGetAllUsersQuery({});
   const { data: projects = [] } = useGetAllProjectsQuery({});
-  const { data: teams = [] } = showAllTeams
-    ? // eslint-disable-next-line react-hooks/rules-of-hooks
-      useGetAllTeamsQuery({})
-    : // eslint-disable-next-line react-hooks/rules-of-hooks
-      useGetTeamsByProjectQuery(selectedProject); // Toggle query based on the state
+  const { data: allTeams = [], refetch: refetchAllTeams } = useGetAllTeamsQuery(
+    {}
+  ); // Fetch all teams
+  const { data: projectTeams = [], refetch: refetchProjectTeams } =
+    useGetTeamsByProjectQuery(selectedProject?._id); // Fetch project-specific teams
 
   const [createTeam] = useCreateTeamMutation();
   const [addUserToTeam] = useAddUserToTeamMutation();
 
+  // Conditionally show teams based on showAllTeams state
+  const teams = showAllTeams ? allTeams : projectTeams;
+
   const handleCreateTeam = async () => {
-    if (teamName && selectedProject) {
-      await createTeam({ name: teamName, projectId: selectedProject });
+    if (teamName && selectedProject?._id) {
+      const { title, description } = selectedProject;
+      await createTeam({
+        name: teamName,
+        project: { title, description },
+        projectId: selectedProject?._id,
+      });
       setTeamName("");
+      refetchAllTeams();
+      refetchProjectTeams();
     }
   };
 
@@ -48,13 +67,17 @@ const TeamManagement: React.FC<{ projectId: string }> = ({ projectId }) => {
     if (selectedUser) {
       await addUserToTeam({ teamId, userId: selectedUser });
       setSelectedUser("");
+      refetchAllTeams();
+      refetchProjectTeams();
     }
   };
+
+  console.log("this is teams", selectedProject?._id);
 
   return (
     <div className="text-center flex flex-col pt-[70px] items-center min-h-screen text-gray-800 bg-gray-100 font-[family-name:var(--font-geist-sans)]">
       <h2 className="text-3xl font-semibold mb-6 text-gray-800">
-        Team Management
+      Simbrella Team Management
       </h2>
 
       <div className="mb-4">
@@ -67,8 +90,13 @@ const TeamManagement: React.FC<{ projectId: string }> = ({ projectId }) => {
         />
 
         <select
-          onChange={(e) => setSelectedProject(e.target.value)}
-          value={selectedProject}
+          onChange={(e) => {
+            const selectedId = e.target.value;
+            const project =
+              projects.find((p: Project) => p._id === selectedId) || null;
+            setSelectedProject(project); // Set the entire project object
+          }}
+          value={selectedProject?._id}
           className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-4"
         >
           <option value="">Select Project</option>
@@ -101,20 +129,20 @@ const TeamManagement: React.FC<{ projectId: string }> = ({ projectId }) => {
 
       <ul className="space-y-4">
         {teams.map((team: Team) => (
-          <li key={team._id} className="bg-white p-4 rounded-lg shadow-md">
-            <div className="flex justify-between items-center">
-              <span className="text-lg font-semibold text-gray-800">
+          <li key={team._id} className="bg-white p-4 rounded-lg shadow-md ">
+            <div className="flex justify-between items-center lg:w-[800px]">
+              <span className="text-lg font-semibold text-gray-800 ">
                 {team.name} ({team.project?.title})
               </span>
 
-              {/* <div className="text-sm text-gray-600">
-                Members:
-                <ul>
-                  {team.members.map((member) => (
-                    <li key={member._id}>{member.username}</li>
+              <div className="text-sm text-gray-600 mx-4">
+                <h1 className="text-lg font-semibold">Members:</h1>
+                <ul className="flex space-x-1">
+                  {team.members.map((member: string) => (
+                    <li key={member}>{member.split(" ")[0]},</li>
                   ))}
                 </ul>
-              </div> */}
+              </div>
 
               <div className="flex items-center space-x-2">
                 <select
@@ -124,7 +152,7 @@ const TeamManagement: React.FC<{ projectId: string }> = ({ projectId }) => {
                 >
                   <option value="">Select User</option>
                   {users.map((user: User) => (
-                    <option key={user._id} value={user._id}>
+                    <option key={user._id} value={user.user_name}>
                       {user.user_name}
                     </option>
                   ))}
