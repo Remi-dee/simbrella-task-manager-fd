@@ -7,11 +7,13 @@ import { logout } from "@/app/redux/features/auth/authSlice"; // Assuming you ha
 import { RootState } from "@/app/redux/store"; // Assuming you have a root state in redux
 import Link from "next/link";
 import { useGetUserProfileQuery } from "../redux/features/user/user.api";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const Dashboard: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { data: userProfile } = useGetUserProfileQuery({});
+  const { data: userProfile, isLoading } = useGetUserProfileQuery({});
   // Get user info from redux store
   const accessToken = useSelector((state: RootState) => state.auth.accessToken);
 
@@ -32,7 +34,17 @@ const Dashboard: React.FC = () => {
       {accessToken ? (
         <div className="max-w-4xl w-full mx-auto px-6 py-12 bg-white shadow-lg rounded-lg text-center">
           <h1 className="text-4xl font-bold text-gray-800 mb-6">
-            Welcome, {userProfile?.user_name}!
+            {/* Use skeleton loader if userProfile is not yet loaded */}
+            {isLoading ? (
+              <Skeleton
+                height={50}
+                className="rounded-lg w-full opacity-20 skeleton-animation"
+                baseColor="#e0e0e0"
+                highlightColor="#f5f5f5"
+              />
+            ) : (
+              <>Welcome, {userProfile?.user_name}!</>
+            )}
           </h1>
           <p className="text-lg text-gray-600 mb-8">
             Welcome to{" "}
