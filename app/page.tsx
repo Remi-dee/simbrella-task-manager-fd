@@ -30,5 +30,9 @@ export default function Home() {
     return null; // Prevent rendering on server-side
   }
 
-  return <div className="">{accessToken ? <Register /> : null}</div>;
+  return (
+    <div className="">
+      <Register />
+    </div>
+  );
 }
