@@ -5,6 +5,8 @@ import {
   useUpdateTaskMutation,
 } from "@/app/redux/features/task/task.api";
 import React, { useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 export interface Task {
   _id: string;
   description: string;
@@ -12,7 +14,7 @@ export interface Task {
 }
 
 const TaskList = () => {
-  const { data: tasks = [], refetch } = useFetchTasksQuery({});
+  const { data: tasks = [], refetch, isLoading } = useFetchTasksQuery({});
   const [createTask] = useCreateTaskMutation();
   const [updateTask] = useUpdateTaskMutation();
   const [deleteTask] = useDeleteTaskMutation();
@@ -96,24 +98,62 @@ const TaskList = () => {
           </div>
         </div>
         <div className="task-list">
-          {tasks.map((task: Task) => (
-            <div key={task._id} className="border p-4 mb-2 rounded-lg">
-              <h2 className="text-xl font-bold">{task.title}</h2>
-              <p>{task.description}</p>
-              <button
-                className="bg-yellow-500 text-white p-1 rounded mr-2"
-                onClick={() => handleEditClick(task)}
-              >
-                Edit
-              </button>
-              <button
-                className="bg-red-500 text-white p-1 rounded"
-                onClick={() => handleDeleteTask(task._id)}
-              >
-                Delete
-              </button>
-            </div>
-          ))}
+          {isLoading ? (
+            <>
+              {" "}
+              <Skeleton
+                height={100}
+                className="rounded-lg w-full opacity-40 skeleton-animation"
+                baseColor="#e0e0e0"
+                highlightColor="#f5f5f5"
+              />
+              <Skeleton
+                height={100}
+                className="rounded-lg w-full opacity-40 skeleton-animation"
+                baseColor="#e0e0e0"
+                highlightColor="#f5f5f5"
+              />
+              <Skeleton
+                height={100}
+                className="rounded-lg w-full opacity-40 skeleton-animation"
+                baseColor="#e0e0e0"
+                highlightColor="#f5f5f5"
+              />
+              <Skeleton
+                height={100}
+                className="rounded-lg w-full opacity-40 skeleton-animation"
+                baseColor="#e0e0e0"
+                highlightColor="#f5f5f5"
+              />
+              <Skeleton
+                height={100}
+                className="rounded-lg w-full opacity-40 skeleton-animation"
+                baseColor="#e0e0e0"
+                highlightColor="#f5f5f5"
+              />
+            </>
+          ) : (
+            <>
+              {tasks.map((task: Task) => (
+                <div key={task._id} className="border p-4 mb-2 rounded-lg">
+                  <h2 className="text-xl font-bold">{task.title}</h2>
+                  <p>{task.description}</p>
+                  <button
+                    className="bg-yellow-500 text-white p-1 rounded mr-2"
+                    onClick={() => handleEditClick(task)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="bg-red-500 text-white p-1 rounded"
+                    onClick={() => handleDeleteTask(task._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))}
+            </>
+          )}
         </div>
       </div>
     </div>

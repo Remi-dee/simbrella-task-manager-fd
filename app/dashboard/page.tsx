@@ -3,8 +3,8 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "@/app/redux/features/auth/authSlice"; // Assuming you have a logout function
-import { RootState } from "@/app/redux/store"; // Assuming you have a root state in redux
+import { logout } from "@/app/redux/features/auth/authSlice";
+import { RootState } from "@/app/redux/store";
 import Link from "next/link";
 import { useGetUserProfileQuery } from "../redux/features/user/user.api";
 import Skeleton from "react-loading-skeleton";
@@ -38,7 +38,7 @@ const Dashboard: React.FC = () => {
             {isLoading ? (
               <Skeleton
                 height={50}
-                className="rounded-lg w-full opacity-20 skeleton-animation"
+                className="rounded-lg w-full opacity-40 skeleton-animation"
                 baseColor="#e0e0e0"
                 highlightColor="#f5f5f5"
               />
