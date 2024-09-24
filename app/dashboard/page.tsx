@@ -75,6 +75,13 @@ const Dashboard: React.FC = () => {
             >
               Create Teams and Assign Users
             </Link>
+
+            <Link
+              className="block bg-teal-900 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-yellow-400 transition duration-300"
+              href="/settings"
+            >
+              Settings
+            </Link>
           </div>
 
           <button
